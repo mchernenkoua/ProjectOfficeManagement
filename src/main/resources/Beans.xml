@@ -11,7 +11,9 @@
 				
 	<context:spring-configured/>
     <context:annotation-config/>
-    <context:load-time-weaver aspectj-weaving="on"/>
+    <!--  
+    	<context:load-time-weaver aspectj-weaving="on"/>
+     -->
     <context:component-scan base-package="ua.com.goit.gojava.POM" />
 
    <bean id="CashMovementService" class="ua.com.goit.gojava.POM.services.CashMovementService">

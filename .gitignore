@@ -1,6 +1,11 @@
+/bin/
 /target/
 .svn/*
 .settings
 .classpath
 .project
 .tern-project
+/.openshift/*
+webapps/.gitkeep
+src/main/resources/.gitkeep
+src/main/java/.gitkeep

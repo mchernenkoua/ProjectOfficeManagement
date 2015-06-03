@@ -2,8 +2,10 @@
         "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
 <aspectj>
 
+  <!--
     <weaver options="-showWeaveInfo">
         <include within="ua.com.goit.gojava.POM.*" />
     </weaver>
-
+  -->
+  
 </aspectj>
