@@ -12,9 +12,9 @@ import org.apache.log4j.Logger;
 
 import ua.com.goit.gojava.POM.dataModel.profitcost.Project;
 import ua.com.goit.gojava.POM.dataModel.profitcost.ProjectType;
-import ua.com.goit.gojava.POM.services.ApplicationContextProvider;
 import ua.com.goit.gojava.POM.services.POMServicesException;
 import ua.com.goit.gojava.POM.services.ProjectService;
+import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
 
 @WebServlet(urlPatterns = {"/ProjectWebController"})
 public class WebControllerProject extends HttpServlet {

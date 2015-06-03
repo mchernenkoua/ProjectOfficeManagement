@@ -9,8 +9,10 @@ import org.hibernate.criterion.Restrictions;
 import ua.com.goit.gojava.POM.dataModel.cash.BankAccount;
 import ua.com.goit.gojava.POM.persistence.POMPersistenceException;
 import ua.com.goit.gojava.POM.persistence.hibernate.BankAccountDAO;
+import ua.com.goit.gojava.POM.services.common.DataObjectService;
+import ua.com.goit.gojava.POM.services.common.Paginator;
 
-public class BankAccountService {
+public class BankAccountService extends DataObjectService<BankAccount> {
 	
 	private static final String CLASS_NAME = "Bank Account"; 
 	private static final Logger LOG = Logger.getLogger(BankAccountService.class);
@@ -22,6 +24,7 @@ public class BankAccountService {
 		
 	}
 	
+	@Override
 	public List<BankAccount> retrieveAll() throws POMServicesException {
 		
 		try {
@@ -33,6 +36,7 @@ public class BankAccountService {
 		
 	}
 	
+	@Override
 	public List<BankAccount> retrieveAll(Paginator paginator) throws POMServicesException {
 		
 		try {
@@ -43,6 +47,7 @@ public class BankAccountService {
 		}
 	}
 
+	@Override
 	public BankAccount retrieveById(long id) throws POMServicesException {
 
 		try {
@@ -83,6 +88,7 @@ public class BankAccountService {
 		}
 	}
 
+	@Override
 	public List<BankAccount> findByName(String query) throws POMServicesException {
 
 		try {

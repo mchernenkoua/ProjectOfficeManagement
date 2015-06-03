@@ -16,13 +16,13 @@ public class ProjectStage  {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id = 0;
+	private long id;
 	
 	@Column
-	private String name = "";
+	private String name;
 	
 	@Column
-	private String description = "";
+	private String description;
 	
 	@ManyToOne(cascade={CascadeType.ALL})
     @JoinColumn(name="parent")

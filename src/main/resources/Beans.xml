@@ -64,7 +64,7 @@
    <bean id="PaymentDocumentDAO" class="ua.com.goit.gojava.POM.persistence.hibernate.PaymentDocumentDAO">
    </bean>
    
-   <bean id="applicationContextProvder" class="ua.com.goit.gojava.POM.services.ApplicationContextProvider">
+   <bean id="applicationContextProvder" class="ua.com.goit.gojava.POM.services.common.ApplicationContextProvider">
    </bean>
    
 </beans>

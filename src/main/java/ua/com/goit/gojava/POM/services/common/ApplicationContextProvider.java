@@ -1,4 +1,4 @@
-package ua.com.goit.gojava.POM.services;
+package ua.com.goit.gojava.POM.services.common;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

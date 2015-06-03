@@ -15,23 +15,23 @@ public class Project {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id = 0;
+	private long id;
 	
 	@Column
-	private String name = "";
+	private String name;
 	
 	@Column
-	private String description = "";
+	private String description;
 	
 	@Column
 	@Enumerated(EnumType.STRING)
 	private ProjectType type = ProjectType.OUTER;
 	
 	@Column
-	private boolean active = true;
+	private boolean active;
 	
 	@Column
-	private String pm = "";
+	private String pm;
 	
 	public long getId() {
 		

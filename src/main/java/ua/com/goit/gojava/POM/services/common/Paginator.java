@@ -1,4 +1,4 @@
-package ua.com.goit.gojava.POM.services;
+package ua.com.goit.gojava.POM.services.common;
 
 public class Paginator {
 	

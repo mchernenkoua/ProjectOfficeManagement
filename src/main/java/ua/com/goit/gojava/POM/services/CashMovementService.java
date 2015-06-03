@@ -12,6 +12,7 @@ import ua.com.goit.gojava.POM.dataModel.common.FinancialDocument;
 import ua.com.goit.gojava.POM.dataModel.common.Money;
 import ua.com.goit.gojava.POM.persistence.POMPersistenceException;
 import ua.com.goit.gojava.POM.persistence.hibernate.CashMovementDAO;
+import ua.com.goit.gojava.POM.services.common.Paginator;
 
 public class CashMovementService {
 	

@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import ua.com.goit.gojava.POM.dataModel.profitcost.ProjectStage;
-import ua.com.goit.gojava.POM.services.ApplicationContextProvider;
 import ua.com.goit.gojava.POM.services.POMServicesException;
 import ua.com.goit.gojava.POM.services.ProjectService;
 import ua.com.goit.gojava.POM.services.ProjectStageService;
+import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
 
 @WebServlet(urlPatterns = {"/ProjectStageWebController"})
 public class WebControllerProjectStage extends HttpServlet {

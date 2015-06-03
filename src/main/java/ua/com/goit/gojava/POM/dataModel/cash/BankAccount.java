@@ -4,23 +4,26 @@ import java.util.Currency;
 
 import javax.persistence.*;
 
+import ua.com.goit.gojava.POM.dataModel.common.DataObject;
+
 @Entity
 @Table(name = "bank_account")
-public class BankAccount {
+public class BankAccount implements DataObject {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id = 0;
+	private long id;
 	
 	@Column
-	private String name = "";
+	private String name;
 	
 	@Column(name = "bank_name")
-	private String bankName = "";
+	private String bankName;
 	
 	@Column
 	private Currency currency;
 	
+	@Override
 	public long getId() {
 		
 		return id;

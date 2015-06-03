@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import ua.com.goit.gojava.POM.dataModel.profitcost.Project;
 import ua.com.goit.gojava.POM.persistence.POMPersistenceException;
 import ua.com.goit.gojava.POM.persistence.hibernate.ProjectDAO;
+import ua.com.goit.gojava.POM.services.common.Paginator;
 
 public class ProjectService {
 	

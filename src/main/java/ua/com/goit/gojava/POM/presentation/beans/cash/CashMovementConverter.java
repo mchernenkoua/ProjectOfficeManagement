@@ -9,9 +9,9 @@ import javax.faces.convert.FacesConverter;
 import org.apache.log4j.Logger;
 
 import ua.com.goit.gojava.POM.dataModel.cash.CashMovementEntry;
-import ua.com.goit.gojava.POM.services.ApplicationContextProvider;
 import ua.com.goit.gojava.POM.services.CashMovementService;
 import ua.com.goit.gojava.POM.services.POMServicesException;
+import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
 
 
 @FacesConverter(forClass = CashMovementEntry.class)

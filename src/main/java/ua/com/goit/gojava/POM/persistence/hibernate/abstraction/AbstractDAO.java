@@ -11,7 +11,7 @@ import org.hibernate.criterion.Projections;
 
 import ua.com.goit.gojava.POM.persistence.POMPersistenceException;
 import ua.com.goit.gojava.POM.persistence.hibernate.HibernateUtil;
-import ua.com.goit.gojava.POM.services.Paginator;
+import ua.com.goit.gojava.POM.services.common.Paginator;
 
 public abstract class AbstractDAO<T> {
 	

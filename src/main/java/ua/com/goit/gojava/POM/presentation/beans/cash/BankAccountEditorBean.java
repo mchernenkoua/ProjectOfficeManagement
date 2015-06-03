@@ -10,9 +10,9 @@ import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 
 import ua.com.goit.gojava.POM.dataModel.cash.BankAccount;
-import ua.com.goit.gojava.POM.services.ApplicationContextProvider;
 import ua.com.goit.gojava.POM.services.BankAccountService;
 import ua.com.goit.gojava.POM.services.POMServicesException;
+import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
 
 
 @RequestScoped

@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import ua.com.goit.gojava.POM.dataModel.profitcost.CostItem;
 import ua.com.goit.gojava.POM.persistence.POMPersistenceException;
 import ua.com.goit.gojava.POM.persistence.hibernate.CostItemDAO;
+import ua.com.goit.gojava.POM.services.common.Paginator;
 
 public class CostItemService {
 	

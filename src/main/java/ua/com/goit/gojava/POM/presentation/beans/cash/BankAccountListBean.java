@@ -17,11 +17,11 @@ import org.primefaces.model.SortOrder;
 
 import ua.com.goit.gojava.POM.dataModel.cash.BankAccount;
 import ua.com.goit.gojava.POM.dataModel.common.Money;
-import ua.com.goit.gojava.POM.services.ApplicationContextProvider;
 import ua.com.goit.gojava.POM.services.BankAccountService;
 import ua.com.goit.gojava.POM.services.CashMovementService;
 import ua.com.goit.gojava.POM.services.POMServicesException;
-import ua.com.goit.gojava.POM.services.Paginator;
+import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
+import ua.com.goit.gojava.POM.services.common.Paginator;
 
 
 @ViewScoped
