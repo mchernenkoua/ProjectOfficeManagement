@@ -1,57 +1,45 @@
 package ua.com.goit.gojava.POM.presentation.beans.cash;
 
-import java.io.Serializable;
-
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
 import ua.com.goit.gojava.POM.dataModel.cash.BankAccount;
+import ua.com.goit.gojava.POM.presentation.beans.common.abstraction.DataObjectEditor;
 import ua.com.goit.gojava.POM.services.BankAccountService;
-import ua.com.goit.gojava.POM.services.POMServicesException;
 import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
+import ua.com.goit.gojava.POM.services.common.abstraction.DataObjectService;
 
 
 @RequestScoped
 @ManagedBean
-public class BankAccountEditorBean implements Serializable {
+public class BankAccountEditorBean extends DataObjectEditor<BankAccount> {
 
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOG=Logger.getLogger(BankAccountEditorBean.class);
-	private BankAccount bankAccount;
-	
-	public void setBankAccount(BankAccount bankAccount) {
-		this.bankAccount = bankAccount;
+	private static final String CLASS_NAME = "Bank Account"; 
+	private static final Logger LOG = Logger.getLogger(BankAccountEditorBean.class);
+	private BankAccountService bankAccountService = 
+			ApplicationContextProvider.getApplicationContext().getBean(BankAccountService.class);
+
+	@Override
+	protected String getClassName() {
+		return CLASS_NAME;
 	}
 
-	public BankAccount getBankAccount() {
-		if(bankAccount == null){			
-			bankAccount = new BankAccount();
-		}
-		return bankAccount;
+	@Override
+	protected Logger getLogger() {
+		return LOG;
 	}
-	
-	public void save() {
-		
-		BankAccountService bankAccountService = ApplicationContextProvider.getApplicationContext().getBean(BankAccountService.class);
-		try {
-			if(bankAccount.getId() == 0) {
-				bankAccountService.create(bankAccount);
-			} else {
-				bankAccountService.update(bankAccount);
-			}
-			
-			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Complete!", "BankAccount saved!"));
-		
-		} catch (POMServicesException e) {
-			LOG.error("Can not save BankAccount: " + e.getMessage(), e);
-			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Can not save BankAccount!"));
-		}
+
+	@Override
+	protected DataObjectService<BankAccount> getDataService() {
+		return bankAccountService;
+	}
+
+	@Override
+	protected BankAccount getNewObject() {
+		return new BankAccount();
 	}
 	
 }

@@ -1,52 +1,37 @@
 package ua.com.goit.gojava.POM.presentation.beans.cash;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import org.apache.log4j.Logger;
 
 import ua.com.goit.gojava.POM.dataModel.cash.BankAccount;
+import ua.com.goit.gojava.POM.presentation.beans.common.abstraction.DataObjectConverter;
 import ua.com.goit.gojava.POM.services.BankAccountService;
-import ua.com.goit.gojava.POM.services.POMServicesException;
 import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
+import ua.com.goit.gojava.POM.services.common.abstraction.DataObjectService;
 
 
 @FacesConverter(forClass = BankAccount.class)
-public class BankAccountConverter implements Converter {
+public class BankAccountConverter extends DataObjectConverter<BankAccount> {
 
+	private static final String CLASS_NAME = "Bank Account"; 
 	private static final Logger LOG = Logger.getLogger(BankAccountConverter.class);
-	
+	private BankAccountService bankAccountService = 
+			ApplicationContextProvider.getApplicationContext().getBean(BankAccountService.class);
+
 	@Override
-	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
-		
-		BankAccount result = null;
-		
-		if(arg2 != null && arg2.trim().length() > 0) {
-			
-			BankAccountService bankAccountService = ApplicationContextProvider.getApplicationContext().getBean(BankAccountService.class);
-			try {
-            	result = bankAccountService.retrieveById(Long.parseLong(arg2));    
-            } catch( NullPointerException | IllegalArgumentException | POMServicesException e) {
-            	LOG.error("Can not convert BankAccount: " + e.getMessage(), e);
-            	arg0.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Can not convert BankAccount: !"));
-    		}
-        }
-		
-		return result;
+	protected String getClassName() {
+		return CLASS_NAME;
 	}
 
 	@Override
-	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		
-		String objName = "";
-		if(arg2 != null) {
-			objName = ((Long)((BankAccount)arg2).getId()).toString();
-        }
+	protected Logger getLogger() {
+		return LOG;
+	}
 
-		return objName;
+	@Override
+	protected DataObjectService<BankAccount> getDataService() {
+		return bankAccountService;
 	}
 
 }

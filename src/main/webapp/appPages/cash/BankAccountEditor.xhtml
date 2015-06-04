@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
-    <f:viewParam name="bankAccount" value="#{bankAccountEditorBean.bankAccount}" />
+    <f:viewParam name="bankAccount" value="#{bankAccountEditorBean.dataObject}" />
 </f:metadata>
        
 <h:head>
@@ -20,19 +20,19 @@
 		<p:messages id="messages" showDetail="true" autoUpdate="true"
 			closable="true" />
 		<p>Банковский счет</p>
-		<h:inputHidden value="#{bankAccountEditorBean.bankAccount.id}" />
+		<h:inputHidden value="#{bankAccountEditorBean.dataObject.id}" />
 		<h:panelGrid columns="2" cellpadding="5">
 	        <p:outputLabel for="id" value="Идентификатор: " />
-	        <p:inputText id="id" value="#{bankAccountEditorBean.bankAccount.id}" readonly = "true"/>
+	        <p:inputText id="id" value="#{bankAccountEditorBean.dataObject.id}" readonly = "true"/>
 	 		
 	        <p:outputLabel for="name" value="Название: " />
-	        <p:inputText id="name" value="#{bankAccountEditorBean.bankAccount.name}"/>
+	        <p:inputText id="name" value="#{bankAccountEditorBean.dataObject.name}"/>
 	 
 	        <p:outputLabel for="bankName" value="Банк: " />
-	        <p:inputText id="bankName" value="#{bankAccountEditorBean.bankAccount.bankName}"/>
+	        <p:inputText id="bankName" value="#{bankAccountEditorBean.dataObject.bankName}"/>
 	 
 	        <p:outputLabel for="currency" value="Валюта: " />
-	        <p:autoComplete id="currency" value="#{bankAccountEditorBean.bankAccount.currency}"
+	        <p:autoComplete id="currency" value="#{bankAccountEditorBean.dataObject.currency}"
 	        		dropdown="true"
 	        		completeMethod="#{currencyAutoCompleter.completeText}" 
 		        	var="selectedCurrency" itemValue="#{selectedCurrency}" itemLabel="#{selectedCurrency.currencyCode}"  

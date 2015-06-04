@@ -19,21 +19,21 @@
 		<p:menubar>
 	   		<p:menuitem value="Добавить" url="/appPages/cash/BankAccountEditor.xhtml" />
 			<p:menuitem value="Редактировать" action="/appPages/cash/BankAccountEditor.xhtml?faces-redirect=true&amp;includeViewParams=true">
-				<f:setPropertyActionListener  target="#{bankAccountEditorBean.bankAccount}" 
-											   value="#{bankAccountListBean.selectedBankAccount}" />
+				<f:setPropertyActionListener  target="#{bankAccountEditorBean.dataObject}" 
+											   value="#{bankAccountListBean.selectedDataObject}" />
 			</p:menuitem>
 			<p:menuitem value="Удалить" 
-						action="#{bankAccountListBean.deleteBankAccount(bankAccountListBean.selectedBankAccount)}" 
+						action="#{bankAccountListBean.deleteDataObject(bankAccountListBean.selectedDataObject)}" 
 						update=":bankAccountForm"/>
 			<p:menuitem value="Открыть движения" action="/appPages/cash/CashMovement.xhtml?faces-redirect=true&amp;includeViewParams=true">
 				<f:setPropertyActionListener  target="#{cashMovementListBean.bankAccountFilter}" 
-											   value="#{bankAccountListBean.selectedBankAccount}" />
+											   value="#{bankAccountListBean.selectedDataObject}" />
 			</p:menuitem>
 		</p:menubar>
 	    
 		<p:dataTable id = "bankAccountDataTable"
-			var="bankAccount" value="#{bankAccountListBean.bankAccounts}"
-			selection="#{bankAccountListBean.selectedBankAccount}" rowKey="#{bankAccount.id}"
+			var="bankAccount" value="#{bankAccountListBean.dataObjects}"
+			selection="#{bankAccountListBean.selectedDataObject}" rowKey="#{bankAccount.id}"
 			paginator="true" rows="10" lazy="true"
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 			rowsPerPageTemplate="1,2,5,10,15">
