@@ -9,13 +9,14 @@ import org.hibernate.annotations.Any;
 import org.hibernate.annotations.AnyMetaDef;
 import org.hibernate.annotations.MetaValue;
 
+import ua.com.goit.gojava.POM.dataModel.common.DataObject;
 import ua.com.goit.gojava.POM.dataModel.common.FinancialDocument;
 import ua.com.goit.gojava.POM.dataModel.common.Money;
 import ua.com.goit.gojava.POM.dataModel.documents.PaymentDocument;
 
 @Entity
 @Table(name = "cash_movement")
-public class CashMovementEntry {
+public class CashMovementEntry implements DataObject {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -44,6 +45,7 @@ public class CashMovementEntry {
 	@JoinColumn(name="doc_id")
     private FinancialDocument doc;
 	
+	@Override
 	public long getId() {
 		
 		return id;

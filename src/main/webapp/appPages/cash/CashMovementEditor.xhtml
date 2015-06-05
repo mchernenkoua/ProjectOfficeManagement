@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
-    <f:viewParam name="cashMovement" value="#{cashMovementEditorBean.cashMovement}" />
+    <f:viewParam name="cashMovement" value="#{cashMovementEditorBean.dataObject}" />
 </f:metadata>
 
 <h:head>
@@ -20,16 +20,16 @@
 		<p:messages id="messages" showDetail="true" autoUpdate="true"
 			closable="true" />
 		<p>Запись о движении денег</p>
-		<h:inputHidden value="#{cashMovementEditorBean.cashMovement.id}" />
+		<h:inputHidden value="#{cashMovementEditorBean.dataObject.id}" />
 		<h:panelGrid columns="2" cellpadding="5">
 	        <p:outputLabel for="id" value="Идентификатор: " />
-	        <p:inputText id="id" value="#{cashMovementEditorBean.cashMovement.id}" readonly = "true"/>
+	        <p:inputText id="id" value="#{cashMovementEditorBean.dataObject.id}" readonly = "true"/>
 	 
 	        <p:outputLabel for="date" value="Дата: " />
-	        <p:calendar id="date" value="#{cashMovementEditorBean.cashMovement.date}" pattern="MM/dd/yyyy HH:mm:ss" />
+	        <p:calendar id="date" value="#{cashMovementEditorBean.dataObject.date}" pattern="MM/dd/yyyy HH:mm:ss" />
  
 	        <p:outputLabel for="bankAccount" value="Банковский счет: " />
-	        <p:autoComplete id="bankAccount" value="#{cashMovementEditorBean.cashMovement.bankAccount}"
+	        <p:autoComplete id="bankAccount" value="#{cashMovementEditorBean.dataObject.bankAccount}"
 	        		dropdown="true"
 	        		completeMethod="#{bankAccountAutoCompleter.completeText}" 
 		        	var="selectedBankAccount" itemValue="#{selectedBankAccount}" itemLabel="#{selectedBankAccount.name}"  
@@ -39,10 +39,10 @@
 		    </p:autoComplete>
 	 	
 	        <p:outputLabel for="currency" value="Валюта: " />
-	        <p:inputText id="currency" value="#{cashMovementEditorBean.cashMovement.bankAccount.currency}" readonly = "true"/>
+	        <p:inputText id="currency" value="#{cashMovementEditorBean.dataObject.bankAccount.currency}" readonly = "true"/>
 	 		
 	        <p:outputLabel for="bankName" value="Сумма: " />
-	        <p:inputText id="bankName" value="#{cashMovementEditorBean.cashMovement.sum.value}"/>
+	        <p:inputText id="bankName" value="#{cashMovementEditorBean.dataObject.sum.value}"/>
 	 		
 	 		<p:commandButton value="Сбросить" type="reset" />
 	        <p:commandButton value="Сохранить" actionListener="#{cashMovementEditorBean.save()}" />

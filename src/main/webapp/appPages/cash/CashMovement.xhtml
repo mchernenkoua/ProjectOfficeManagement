@@ -23,11 +23,11 @@
 	    <p:menubar>
 	   		<p:menuitem value="Добавить" url="/appPages/cash/CashMovementEditor.xhtml" />
 			<p:menuitem value="Редактировать" action="/appPages/cash/CashMovementEditor.xhtml?faces-redirect=true&amp;includeViewParams=true">
-				<f:setPropertyActionListener  target="#{cashMovementEditorBean.cashMovement}" 
-											   value="#{cashMovementListBean.selectedCashMovementEntry}" />
+				<f:setPropertyActionListener  target="#{cashMovementEditorBean.dataObject}" 
+											   value="#{cashMovementListBean.selectedDataObject}" />
 			</p:menuitem>
 			<p:menuitem value="Удалить" 
-						action="#{cashMovementListBean.deleteCashMovement(cashMovementListBean.selectedCashMovementEntry)}" 
+						action="#{cashMovementListBean.deleteDataObject(cashMovementListBean.selectedDataObject)}" 
 						update=":cashMovementForm"/>
 		</p:menubar>
 	    
@@ -35,15 +35,15 @@
         <p:autoComplete id="bankAccountFilter" value="#{cashMovementListBean.bankAccountFilter}"
         		dropdown="true"
         		completeMethod="#{bankAccountAutoCompleter.completeText}" 
-	        	var="selectedBankAccount" itemValue="#{selectedBankAccount}" itemLabel="#{selectedBankAccount.name}"  
+	        	var="selectedDataObject" itemValue="#{selectedDataObject}" itemLabel="#{selectedDataObject.name}"  
 	        	forceSelection="true"
 	        >
 	        	<p:ajax event="itemSelect" update="cashMovementForm" />
 	    </p:autoComplete>
 	    
 		<p:dataTable  id = "cashMovementDataTable"
-			var="cashMovement" value="#{cashMovementListBean.cashMovements}"
-			selection="#{cashMovementListBean.selectedCashMovementEntry}" rowKey="#{cashMovement.id}"
+			var="cashMovement" value="#{cashMovementListBean.dataObjects}"
+			selection="#{cashMovementListBean.selectedDataObject}" rowKey="#{cashMovement.id}"
 			paginator="true" rows="10" lazy="true"
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 			rowsPerPageTemplate="1,2,5,10,15">

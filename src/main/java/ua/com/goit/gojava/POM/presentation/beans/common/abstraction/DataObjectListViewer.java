@@ -30,53 +30,59 @@ public abstract class DataObjectListViewer<T extends DataObject> implements Seri
 	protected abstract Logger getLogger();
 	protected abstract DataObjectService<T> getDataService();
 	
-	private LazyDataModel<T> initDataObjects() {
+	protected class DataObjectModel extends LazyDataModel<T> {
 		
-		return new LazyDataModel<T>() {
-
-			private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L;
+		private List<T> dataObjectList;
+		
+		public List<T> getDataList(DataObjectService<T> dataObjectService, 
+												Paginator paginator) throws POMServicesException {
+			return dataObjectService.retrieveAll(paginator);
+		}
+		
+		@Override
+		public List<T> load(int first, int pageSize, 
+						String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 			
-			private List<T> dataObjectList;
+			DataObjectService<T> dataObjectService = getDataService();
+			Paginator paginator = new Paginator();
+			paginator.setFirstResult(first);
+			paginator.setMaxResults(pageSize);
 			
-			@Override
-			public List<T> load(int first, int pageSize, 
-							String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-				
-				DataObjectService<T> dataObjectService = getDataService();
-				Paginator paginator = new Paginator();
-				paginator.setFirstResult(first);
-				paginator.setMaxResults(pageSize);
-				
-				try {
-					dataObjectList = dataObjectService.retrieveAll(paginator);
-				} catch (POMServicesException e) {
-					getLogger().error("Can not retrieve "+getClassName()+" List: " + e.getMessage(), e);
-					FacesContext.getCurrentInstance().addMessage(null, 
-							new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Can not retrieve "+getClassName()+" List!"));
-				}
-				
-				setRowCount(paginator.getTotal());
-		        setPageSize(pageSize);
-		 
-		        return dataObjectList;
-		    }
-			
-			@Override
-			public Object getRowKey(T dataObject) {
-				return dataObject.getId();
+			try {
+				dataObjectList = getDataList(dataObjectService, paginator);
+			} catch (POMServicesException e) {
+				getLogger().error("Can not retrieve "+getClassName()+" List: " + e.getMessage(), e);
+				FacesContext.getCurrentInstance().addMessage(null, 
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Can not retrieve "+getClassName()+" List!"));
 			}
+			
+			setRowCount(paginator.getTotal());
+	        setPageSize(pageSize);
+	 
+	        return dataObjectList;
+	    }
 
-			@Override
-			public T getRowData(String dataObjectId) {
-				Long id = Long.valueOf(dataObjectId);
-				for (T dataObject : dataObjectList) {
-					if (id.equals(dataObject.getId())) {
-						return dataObject;
-					}
+		@Override
+		public Object getRowKey(T dataObject) {
+			return dataObject.getId();
+		}
+
+		@Override
+		public T getRowData(String dataObjectId) {
+			Long id = Long.valueOf(dataObjectId);
+			for (T dataObject : dataObjectList) {
+				if (id.equals(dataObject.getId())) {
+					return dataObject;
 				}
-				return null;
 			}
-		};
+			return null;
+		}
+	} 
+	
+	protected LazyDataModel<T> initDataObjects() {
+		
+		return new DataObjectModel();
 	}
 
 	public void deleteDataObject(T dataObject){
