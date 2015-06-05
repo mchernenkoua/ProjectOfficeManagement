@@ -19,17 +19,17 @@
 		<p:menubar>
 	   		<p:menuitem value="Добавить" url="/appPages/profitcost/ProjectEditor.xhtml" />
 			<p:menuitem value="Редактировать" action="/appPages/profitcost/ProjectEditor.xhtml?faces-redirect=true&amp;includeViewParams=true">
-				<f:setPropertyActionListener  target="#{projectEditorBean.project}" 
-											   value="#{projectListBean.selectedProject}" />
+				<f:setPropertyActionListener  target="#{projectEditorBean.dataObject}" 
+											   value="#{projectListBean.selectedDataObject}" />
 			</p:menuitem>
 			<p:menuitem value="Удалить" 
-						action="#{projectListBean.deleteProject(projectListBean.selectedProject)}" 
+						action="#{projectListBean.deleteDataObject(projectListBean.selectedDataObject)}" 
 						update=":projectForm"/>
 		</p:menubar>
 	    
 		<p:dataTable id = "projectDataTable"
-			var="project" value="#{projectListBean.projects}"
-			selection="#{projectListBean.selectedProject}" rowKey="#{project.id}"
+			var="project" value="#{projectListBean.dataObjects}"
+			selection="#{projectListBean.selectedDataObject}" rowKey="#{project.id}"
 			paginator="true" rows="10" lazy="true"
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 			rowsPerPageTemplate="1,2,5,10,15">
@@ -59,7 +59,7 @@
 				<f:facet name="header">
 					<h:outputText value="Руководитель" />
 				</f:facet>
-				<h:outputText value="#{project.pm.name}" />
+				<h:outputText value="#{project.pm}" />
 			</p:column>
 			<p:column>
 				<f:facet name="header">

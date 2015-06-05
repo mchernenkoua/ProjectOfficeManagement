@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import ua.com.goit.gojava.POM.dataModel.common.DataObject;
+
 @Entity
 @Table(name = "projects")
-public class Project {
+public class Project implements DataObject {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,6 +35,7 @@ public class Project {
 	@Column
 	private String pm;
 	
+	@Override
 	public long getId() {
 		
 		return id;
