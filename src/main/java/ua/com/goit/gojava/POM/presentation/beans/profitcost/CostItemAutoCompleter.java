@@ -1,44 +1,39 @@
 package ua.com.goit.gojava.POM.presentation.beans.profitcost;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
 import ua.com.goit.gojava.POM.dataModel.profitcost.CostItem;
+import ua.com.goit.gojava.POM.presentation.beans.common.abstraction.DataObjectAutoCompleter;
 import ua.com.goit.gojava.POM.services.CostItemService;
-import ua.com.goit.gojava.POM.services.POMServicesException;
 import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
+import ua.com.goit.gojava.POM.services.common.abstraction.NamedDataObjectService;
 
 
 @RequestScoped
 @ManagedBean
-public class CostItemAutoCompleter implements Serializable{
+public class CostItemAutoCompleter extends DataObjectAutoCompleter<CostItem>{
 
 	private static final long serialVersionUID = 1L;
+	private static final String CLASS_NAME = "Cost Item"; 
 	private static final Logger LOG = Logger.getLogger(CostItemAutoCompleter.class);
+	private CostItemService costItemService = 
+			ApplicationContextProvider.getApplicationContext().getBean(CostItemService.class);
+	
+	@Override
+	protected String getClassName() {
+		return CLASS_NAME;
+	}
 
-	public List<CostItem> completeText(String query) {
+	@Override
+	protected Logger getLogger() {
+		return LOG;
+	}
 
-		CostItemService costItemService = ApplicationContextProvider.getApplicationContext().getBean(CostItemService.class);
-		List<CostItem> result = null;
-		try {
-			if(!query.isEmpty()){
-				result = costItemService.findByName(query);
-			} else {
-				result = costItemService.retrieveAll();
-			}
-		} catch (POMServicesException e) {
-			LOG.error("Can not retrieve CostItem List: " + e.getMessage(), e);
-			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Can not retrieve CostItem List!"));
-		}
-		result.add(0, null);
-		return result;
-    }
+	@Override
+	protected NamedDataObjectService<CostItem> getDataService() {
+		return costItemService;
+	}
 }

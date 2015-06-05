@@ -2,9 +2,11 @@ package ua.com.goit.gojava.POM.dataModel.profitcost;
 
 import javax.persistence.*;
 
+import ua.com.goit.gojava.POM.dataModel.common.DataObject;
+
 @Entity
 @Table(name = "cost_items")
-public class CostItem {
+public class CostItem implements DataObject {
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,6 +23,7 @@ public class CostItem {
     @JoinColumn(name="parent")
     private CostItem parent;
 	
+	@Override
 	public long getId() {
 		
 		return id;

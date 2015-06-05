@@ -19,17 +19,17 @@
 		<p:menubar>
 	   		<p:menuitem value="Добавить" url="/appPages/profitcost/CostItemEditor.xhtml" />
 			<p:menuitem value="Редактировать" action="/appPages/profitcost/CostItemEditor.xhtml?faces-redirect=true&amp;includeViewParams=true">
-				<f:setPropertyActionListener  target="#{costItemEditorBean.costItem}" 
-											   value="#{costItemListBean.selectedCostItem}" />
+				<f:setPropertyActionListener  target="#{costItemEditorBean.dataObject}" 
+											   value="#{costItemListBean.selectedDataObject}" />
 			</p:menuitem>
 			<p:menuitem value="Удалить" 
-						action="#{costItemListBean.deleteCostItem(costItemListBean.selectedCostItem)}" 
+						action="#{costItemListBean.deleteDataObject(costItemListBean.selectedDataObject)}" 
 						update=":costItemForm"/>
 		</p:menubar>
 	    
 		<p:dataTable id = "costItemDataTable"
-			var="costItem" value="#{costItemListBean.costItems}"
-			selection="#{costItemListBean.selectedCostItem}" rowKey="#{costItem.id}"
+			var="costItem" value="#{costItemListBean.dataObjects}"
+			selection="#{costItemListBean.selectedDataObject}" rowKey="#{costItem.id}"
 			paginator="true" rows="10" lazy="true"
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 			rowsPerPageTemplate="1,2,5,10,15">

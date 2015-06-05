@@ -1,57 +1,45 @@
 package ua.com.goit.gojava.POM.presentation.beans.profitcost;
 
-import java.io.Serializable;
-
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
 import ua.com.goit.gojava.POM.dataModel.profitcost.CostItem;
+import ua.com.goit.gojava.POM.presentation.beans.common.abstraction.DataObjectEditor;
 import ua.com.goit.gojava.POM.services.CostItemService;
-import ua.com.goit.gojava.POM.services.POMServicesException;
 import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
+import ua.com.goit.gojava.POM.services.common.abstraction.DataObjectService;
 
 
 @RequestScoped
 @ManagedBean
-public class CostItemEditorBean implements Serializable {
+public class CostItemEditorBean extends DataObjectEditor<CostItem> {
 
 	private static final long serialVersionUID = 1L;
+	private static final String CLASS_NAME = "Cost Item"; 
 	private static final Logger LOG=Logger.getLogger(CostItemEditorBean.class);
-	private CostItem costItem;
-	
-	public void setCostItem(CostItem costItem) {
-		this.costItem = costItem;
+	private CostItemService costItemService = 
+			ApplicationContextProvider.getApplicationContext().getBean(CostItemService.class);
+
+	@Override
+	protected String getClassName() {
+		return CLASS_NAME;
 	}
 
-	public CostItem getCostItem() {
-		if(costItem == null){			
-			costItem = new CostItem();
-		}
-		return costItem;
+	@Override
+	protected Logger getLogger() {
+		return LOG;
 	}
-	
-	public void save() {
-		
-		CostItemService costItemService = ApplicationContextProvider.getApplicationContext().getBean(CostItemService.class);
-		try {
-			if(costItem.getId() == 0) {
-				costItemService.create(costItem);
-			} else {
-				costItemService.update(costItem);
-			}
-			
-			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Complete!", "CostItem saved!"));
-		
-		} catch (POMServicesException e) {
-			LOG.error("Can not save CostItem: " + e.getMessage(), e);
-			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Can not save CostItem!"));
-		}
+
+	@Override
+	protected DataObjectService<CostItem> getDataService() {
+		return costItemService;
+	}
+
+	@Override
+	protected CostItem getNewObject() {
+		return new CostItem();
 	}
 	
 }

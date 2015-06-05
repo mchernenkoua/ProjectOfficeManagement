@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
-    <f:viewParam name="costItem" value="#{costItemEditorBean.costItem}" />
+    <f:viewParam name="costItem" value="#{costItemEditorBean.dataObject}" />
 </f:metadata>
        
 <h:head>
@@ -20,23 +20,23 @@
 		<p:messages id="messages" showDetail="true" autoUpdate="true"
 			closable="true" />
 		<p>Статья затрат</p>
-		<h:inputHidden value="#{costItemEditorBean.costItem.id}" />
+		<h:inputHidden value="#{costItemEditorBean.dataObject.id}" />
 		<h:panelGrid columns="2" cellpadding="5">
 	        <p:outputLabel for="id" value="Идентификатор: " />
-	        <p:inputText id="id" value="#{costItemEditorBean.costItem.id}" readonly = "true"/>
+	        <p:inputText id="id" value="#{costItemEditorBean.dataObject.id}" readonly = "true"/>
 	 		
 	        <p:outputLabel for="name" value="Название: " />
-	        <p:inputText id="name" value="#{costItemEditorBean.costItem.name}"/>
+	        <p:inputText id="name" value="#{costItemEditorBean.dataObject.name}"/>
 	 
 	        <p:outputLabel for="type" value="Вид: " />
-	        <p:autoComplete id="type" value="#{costItemEditorBean.costItem.type}"
+	        <p:autoComplete id="type" value="#{costItemEditorBean.dataObject.type}"
 	        		dropdown="true"
 	        		completeMethod="#{costItemTypeAutoCompleter.completeText}" 
 		        	var="selectedCostItemType" itemValue="#{selectedCostItemType}" itemLabel="#{selectedCostItemType}"  
 		        	forceSelection="true"/>
 	 
 	        <p:outputLabel for="parent" value="Родитель: " />
-	        <p:autoComplete id="parent" value="#{costItemEditorBean.costItem.parent}"
+	        <p:autoComplete id="parent" value="#{costItemEditorBean.dataObject.parent}"
 	        		dropdown="true"
 	        		completeMethod="#{costItemAutoCompleter.completeText}" 
 		        	var="selectedCostItem" itemValue="#{selectedCostItem}" itemLabel="#{selectedCostItem.name}"  
