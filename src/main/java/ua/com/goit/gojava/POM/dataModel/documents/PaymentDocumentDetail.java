@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import ua.com.goit.gojava.POM.dataModel.POMDataModelException;
+import ua.com.goit.gojava.POM.dataModel.common.DataObject;
 import ua.com.goit.gojava.POM.dataModel.common.Money;
 import ua.com.goit.gojava.POM.dataModel.profitcost.CostItem;
 import ua.com.goit.gojava.POM.dataModel.profitcost.Project;
@@ -24,7 +25,9 @@ import ua.com.goit.gojava.POM.dataModel.profitcost.ProjectStage;
 
 @Entity
 @Table(name = "payment_document_details")
-public class PaymentDocumentDetail {
+public class PaymentDocumentDetail implements DataObject {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -59,6 +62,7 @@ public class PaymentDocumentDetail {
 	@Column
 	private long rowNumber; 
 	
+	@Override
 	public long getId() {		
 		return id;	
 	}

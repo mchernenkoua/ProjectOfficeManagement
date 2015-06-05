@@ -9,12 +9,15 @@ import javax.persistence.*;
 
 import ua.com.goit.gojava.POM.dataModel.POMDataModelException;
 import ua.com.goit.gojava.POM.dataModel.cash.BankAccount;
+import ua.com.goit.gojava.POM.dataModel.common.DataObject;
 import ua.com.goit.gojava.POM.dataModel.common.FinancialDocument;
 import ua.com.goit.gojava.POM.dataModel.common.Money;
 
 @Entity
 @Table(name = "payment_document")
-public class PaymentDocument implements FinancialDocument {
+public class PaymentDocument implements FinancialDocument, DataObject {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,7 +39,7 @@ public class PaymentDocument implements FinancialDocument {
 	        @AttributeOverride(name="value", column = @Column(name="sum") ),
 	        @AttributeOverride(name="currency", column = @Column(name="currency") )
 	    })
-    private Money docSum;
+    private Money docSum = new Money();
 	
 	@Column
 	private boolean checked;

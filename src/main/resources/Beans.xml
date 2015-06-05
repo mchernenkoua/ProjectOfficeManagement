@@ -37,14 +37,16 @@
    <bean id="ProjectFinResultEntryService" class="ua.com.goit.gojava.POM.services.ProjectFinResultEntryService">
       <property name="projectFinResultEntryDAO" ref="ProjectFinResultEntryDAO"/>
    </bean>
+   <bean id="PaymentDocumentDetailService" class="ua.com.goit.gojava.POM.services.PaymentDocumentDetailService">
+      <property name="paymentDocumentDetailDAO" ref="PaymentDocumentDetailDAO"/>
+   </bean>
    <bean id="PaymentDocumentService" class="ua.com.goit.gojava.POM.services.PaymentDocumentService">
       <property name="paymentDocumentDAO" ref="PaymentDocumentDAO"/>
-      <property name="paymentDocumentDetailDAO" ref="PaymentDocumentDetailDAO"/>
+      <property name="paymentDocumentDetailService" ref="PaymentDocumentDetailService"/>
       <property name="cashMovementService" ref="CashMovementService"/>
       <property name="projectFinResultEntryService" ref="ProjectFinResultEntryService"/>
    </bean>
    
-
    <bean id="CashMovementDAO" class="ua.com.goit.gojava.POM.persistence.hibernate.CashMovementDAO">
    </bean>
    <bean id="BankAccountDAO" class="ua.com.goit.gojava.POM.persistence.hibernate.BankAccountDAO">
