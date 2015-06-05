@@ -3,8 +3,6 @@ package ua.com.goit.gojava.POM.services.common.abstraction;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Restrictions;
 
 import ua.com.goit.gojava.POM.dataModel.common.DataObject;
 import ua.com.goit.gojava.POM.persistence.POMPersistenceException;
@@ -24,15 +22,6 @@ public abstract class DataObjectService<T extends DataObject> {
 		} catch (POMPersistenceException e) {
 			getLogger().error("Could not retrieve "+getClassName()+" by ID: "+e.getMessage(), e);
 			throw new POMServicesException("Could not retrieve "+getClassName()+" by ID",e);
-		}
-	}
-	public List<T> findByName(String query) throws POMServicesException {
-		try {
-			Criterion restriction = Restrictions.like("name", query);
-			return getDataObjectDAO().retrieve(restriction);
-		} catch (POMPersistenceException e) {
-			getLogger().error("Could not find by name "+getClassName()+": "+e.getMessage(), e);
-			throw new POMServicesException("Could not find by name "+getClassName()+"",e);
 		}
 	}
 	public void create(T dataObject) throws POMServicesException {

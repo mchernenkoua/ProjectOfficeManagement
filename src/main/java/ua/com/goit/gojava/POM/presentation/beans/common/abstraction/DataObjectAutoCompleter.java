@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 
 import ua.com.goit.gojava.POM.dataModel.common.DataObject;
 import ua.com.goit.gojava.POM.services.POMServicesException;
-import ua.com.goit.gojava.POM.services.common.abstraction.DataObjectService;
+import ua.com.goit.gojava.POM.services.common.abstraction.NamedDataObjectService;
 
 
 public abstract class DataObjectAutoCompleter<T extends DataObject> implements Serializable{
@@ -19,11 +19,11 @@ public abstract class DataObjectAutoCompleter<T extends DataObject> implements S
 	
 	protected abstract String getClassName(); 
 	protected abstract Logger getLogger();
-	protected abstract DataObjectService<T> getDataService();
+	protected abstract NamedDataObjectService<T> getDataService();
 
 	public List<T> completeText(String query) {
 
-		DataObjectService<T> dataObjectService = getDataService();
+		NamedDataObjectService<T> dataObjectService = getDataService();
 		List<T> result = null;
 		try {
 			if(!query.isEmpty()){

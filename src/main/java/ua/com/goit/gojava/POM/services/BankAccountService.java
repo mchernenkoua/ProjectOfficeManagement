@@ -5,9 +5,9 @@ import org.apache.log4j.Logger;
 import ua.com.goit.gojava.POM.dataModel.cash.BankAccount;
 import ua.com.goit.gojava.POM.persistence.hibernate.BankAccountDAO;
 import ua.com.goit.gojava.POM.persistence.hibernate.abstraction.AbstractDAO;
-import ua.com.goit.gojava.POM.services.common.abstraction.DataObjectService;
+import ua.com.goit.gojava.POM.services.common.abstraction.NamedDataObjectService;
 
-public class BankAccountService extends DataObjectService<BankAccount> {
+public class BankAccountService extends NamedDataObjectService<BankAccount> {
 	
 	private static final String CLASS_NAME = "Bank Account"; 
 	private static final Logger LOG = Logger.getLogger(BankAccountService.class);

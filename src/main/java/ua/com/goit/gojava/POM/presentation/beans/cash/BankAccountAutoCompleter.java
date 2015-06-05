@@ -9,7 +9,7 @@ import ua.com.goit.gojava.POM.dataModel.cash.BankAccount;
 import ua.com.goit.gojava.POM.presentation.beans.common.abstraction.DataObjectAutoCompleter;
 import ua.com.goit.gojava.POM.services.BankAccountService;
 import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
-import ua.com.goit.gojava.POM.services.common.abstraction.DataObjectService;
+import ua.com.goit.gojava.POM.services.common.abstraction.NamedDataObjectService;
 
 
 @RequestScoped
@@ -33,7 +33,7 @@ public class BankAccountAutoCompleter extends DataObjectAutoCompleter<BankAccoun
 	}
 
 	@Override
-	protected DataObjectService<BankAccount> getDataService() {
+	protected NamedDataObjectService<BankAccount> getDataService() {
 		return bankAccountService;
 	}
 }
