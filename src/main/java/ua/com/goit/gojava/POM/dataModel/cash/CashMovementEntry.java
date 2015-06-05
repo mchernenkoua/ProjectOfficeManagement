@@ -48,62 +48,44 @@ public class CashMovementEntry implements DataObject {
     private FinancialDocument doc;
 	
 	@Override
-	public long getId() {
-		
-		return id;
-		
+	public long getId() {		
+		return id;		
 	}
 	
-	public void setId(long id) {
-		
-		this.id = id;
-		
+	public void setId(long id) {		
+		this.id = id;		
 	}
 	
-	public Date getDate() {
-		
-		return date;
-		
+	public Date getDate() {		
+		return date;		
 	}
 	
-	public void setDate(Date date) {
-		
-		this.date = date;
-		
+	public void setDate(Date date) {		
+		this.date = date;		
 	}
 	
-	public Money getSum() {
-		
-		return sum;
-		
+	public Money getSum() {		
+		return sum;		
 	}
 	
-	public void setSum(Money sum) {
-		
-		this.sum = sum;
-		
+	public void setSum(Money sum) {		
+		this.sum = sum;		
 	}
 
-	public BankAccount getBankAccount() {
-		
-		return bankAccount;
-		
+	public BankAccount getBankAccount() {	
+		return bankAccount;	
 	}
 
-	public void setBankAccount(BankAccount bankAccount) {
-		
-		this.bankAccount = bankAccount;
-		
+	public void setBankAccount(BankAccount bankAccount) {	
+		this.bankAccount = bankAccount;	
 	}
 	
-	public Currency getCurrency() {
-		
+	public Currency getCurrency() {	
 		Currency currency = null;
 		if(bankAccount != null) {
 			currency = bankAccount.getCurrency();
 		}
-		return currency;
-		
+		return currency;		
 	}
 
 	public void setDoc(FinancialDocument doc) {

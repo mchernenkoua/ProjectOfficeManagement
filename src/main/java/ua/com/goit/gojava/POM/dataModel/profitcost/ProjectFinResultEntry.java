@@ -24,14 +24,17 @@ import org.hibernate.annotations.Any;
 import org.hibernate.annotations.AnyMetaDef;
 import org.hibernate.annotations.MetaValue;
 
+import ua.com.goit.gojava.POM.dataModel.common.DataObject;
 import ua.com.goit.gojava.POM.dataModel.common.FinancialDocument;
 import ua.com.goit.gojava.POM.dataModel.common.Money;
 import ua.com.goit.gojava.POM.dataModel.documents.PaymentDocument;
 
 @Entity
 @Table(name = "project_fin_result")
-public class ProjectFinResultEntry {
+public class ProjectFinResultEntry implements DataObject {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
@@ -61,7 +64,7 @@ public class ProjectFinResultEntry {
 	        @AttributeOverride(name="value", column = @Column(name="sum") ),
 	        @AttributeOverride(name="currency", column = @Column(name="currency") )
 	    })
-    private Money sum;
+    private Money sum = new Money();
 	
 	@Any(metaColumn = @Column(name = "doc_type"))
     @AnyMetaDef(idType = "long", metaType = "string", 
@@ -108,10 +111,10 @@ public class ProjectFinResultEntry {
 		this.projectStage = projectStage;
 	}
 	public Money getSum() {
-		return new Money(sum);
+		return sum;
 	}
 	public void setSum(Money sum) {
-		this.sum = new Money(sum);
+		this.sum = sum;
 	}
 	public ProfitLostsType getType() {
 		return type;

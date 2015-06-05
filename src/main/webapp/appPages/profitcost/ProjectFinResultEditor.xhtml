@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewParam name="projectFinResultEntry" value="#{projectFinResultEditorBean.dataObject}" />
+</f:metadata>
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Project Office Management System</title>
+</h:head>
+<h:body>
+	<div class="container">
+	    <ui:include src="/appPages/topMenu.xhtml" />    
+	</div>
+	<h:form>
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" />
+		<p>Запись о затратах проектов</p>
+		<h:inputHidden value="#{projectFinResultEditorBean.dataObject.id}" />
+		<h:panelGrid columns="2" cellpadding="5">
+	        <p:outputLabel for="id" value="Идентификатор: " />
+	        <p:inputText id="id" value="#{projectFinResultEditorBean.dataObject.id}" readonly = "true"/>
+	 
+	        <p:outputLabel for="date" value="Дата: " />
+	        <p:calendar id="date" value="#{projectFinResultEditorBean.dataObject.date}" pattern="MM/dd/yyyy HH:mm:ss" />
+ 
+	        <p:outputLabel for="profitLostsType" value="Вид затрат: " />
+	        <p:autoComplete id="profitLostsType" value="#{projectFinResultEditorBean.dataObject.type}"
+	        		dropdown="true"
+	        		completeMethod="#{profitLostsTypeAutoCompleter.completeText}" 
+		        	var="selectedType" itemValue="#{selectedType}" itemLabel="#{selectedType}"  
+		        	forceSelection="true"
+		        >
+		        	<p:ajax event="itemSelect" update="profitLostsType" />
+		    </p:autoComplete>
+	 	
+	        <p:outputLabel for="project" value="Проект: " />
+	        <p:autoComplete id="project" value="#{projectFinResultEditorBean.dataObject.project}"
+	        		dropdown="true"
+	        		completeMethod="#{projectAutoCompleter.completeText}" 
+		        	var="selectedProject" itemValue="#{selectedProject}" itemLabel="#{selectedProject.name}"  
+		        	forceSelection="true"
+		        >
+		        	<p:ajax event="itemSelect" update="project" />
+		    </p:autoComplete>
+	 	
+	        <p:outputLabel for="projectStage" value="Этап: " />
+	        <p:autoComplete id="projectStage" value="#{projectFinResultEditorBean.dataObject.projectStage}"
+	        		dropdown="true"
+	        		completeMethod="#{projectStageAutoCompleter.completeText}" 
+		        	var="selectedProjectStage" itemValue="#{selectedProjectStage}" itemLabel="#{selectedProjectStage.name}"  
+		        	forceSelection="true"
+		        >
+		        	<p:ajax event="itemSelect" update="projectStage" />
+		    </p:autoComplete>
+	 	
+	        <p:outputLabel for="costItem" value="Статья затрат: " />
+	        <p:autoComplete id="costItem" value="#{projectFinResultEditorBean.dataObject.costItem}"
+	        		dropdown="true"
+	        		completeMethod="#{costItemAutoCompleter.completeText}" 
+		        	var="selectedCostItem" itemValue="#{selectedCostItem}" itemLabel="#{selectedCostItem.name}"  
+		        	forceSelection="true"
+		        >
+		        	<p:ajax event="itemSelect" update="costItem" />
+		    </p:autoComplete>
+	 	
+	        <p:outputLabel for="currency" value="Валюта: " />
+	        <p:autoComplete id="currency" value="#{projectFinResultEditorBean.dataObject.sum.currency}"
+	        		dropdown="true"
+	        		completeMethod="#{currencyAutoCompleter.completeText}" 
+		        	var="selectedCurrency" itemValue="#{selectedCurrency}" itemLabel="#{selectedCurrency.currencyCode}"  
+		        	forceSelection="true"
+		        >
+		        	<p:ajax event="itemSelect" update="currency" />
+		    </p:autoComplete>
+	 	
+	        
+	        <p:outputLabel for="bankName" value="Сумма: " />
+	        <p:inputText id="bankName" value="#{projectFinResultEditorBean.dataObject.sum.value}"/>
+	 		
+	 		<p:commandButton value="Сбросить" type="reset" />
+	        <p:commandButton value="Сохранить" actionListener="#{projectFinResultEditorBean.save()}" />
+	    </h:panelGrid>
+	</h:form>
+	<div>
+		<h:outputLink value="#{request.contextPath}/appPages/profitcost/ProjectFinResults.xhtml"> в список </h:outputLink>
+	</div>
+	<div>
+		<h:outputLink value="#{request.contextPath}/appPages/index.xhtml"> вернуться на главное меню </h:outputLink>
+	</div>
+</h:body>
+</html>
