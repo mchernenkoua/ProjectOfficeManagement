@@ -10,9 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import ua.com.goit.gojava.POM.dataModel.common.DataObject;
+
 @Entity
 @Table(name = "project_stages")
-public class ProjectStage  {
+public class ProjectStage implements DataObject {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,6 +32,7 @@ public class ProjectStage  {
     @JoinColumn(name="parent")
     private Project parent;
 	
+	@Override
 	public long getId() {
 		return id;
 	}

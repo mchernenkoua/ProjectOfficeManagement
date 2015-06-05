@@ -3,82 +3,53 @@ package ua.com.goit.gojava.POM.services;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
+import ua.com.goit.gojava.POM.dataModel.profitcost.Project;
 import ua.com.goit.gojava.POM.dataModel.profitcost.ProjectStage;
 import ua.com.goit.gojava.POM.persistence.POMPersistenceException;
 import ua.com.goit.gojava.POM.persistence.hibernate.ProjectStageDAO;
+import ua.com.goit.gojava.POM.persistence.hibernate.abstraction.AbstractDAO;
 import ua.com.goit.gojava.POM.services.common.Paginator;
+import ua.com.goit.gojava.POM.services.common.abstraction.NamedDataObjectService;
 
-public class ProjectStageService {
+public class ProjectStageService extends NamedDataObjectService<ProjectStage> {
 	
+	private static final String CLASS_NAME = "Project Stage"; 
 	private static final Logger LOG = Logger.getLogger(ProjectStageService.class);
 	ProjectStageDAO projectStageDAO;
 
 	public void setProjectStageDAO(ProjectStageDAO projectStageDAO) {
-		
 		this.projectStageDAO = projectStageDAO;
+	}
+	
+	@Override
+	protected String getClassName() {
+		return CLASS_NAME;
+	}
+
+	@Override
+	protected Logger getLogger() {
+		return LOG;
+	}
+
+	@Override
+	protected AbstractDAO<ProjectStage> getDataObjectDAO() {
+		return projectStageDAO;
+	}
+
+	public List<ProjectStage> retrieveAll(Project project, Paginator paginator) throws POMServicesException {
+
+		try {
+			Criterion restriction = Restrictions.eq("parent", project);
+			return projectStageDAO.retrieve(restriction, paginator);
+		} catch (POMPersistenceException e) {
+			LOG.error("Could not retrieve all "+CLASS_NAME+"s: "+e.getMessage(), e);
+			throw new POMServicesException("Could not retrieve all "+CLASS_NAME+"s",e);
+		}
 		
 	}
 	
-	public List<ProjectStage> retrieveAll() throws POMServicesException {
-		
-		try {
-			return projectStageDAO.retrieveAll();
-		} catch (POMPersistenceException e) {
-			LOG.error("Could not retrieve all ProjectStages: "+e.getMessage(), e);
-			throw new POMServicesException("Could not retrieve all ProjectStages",e);
-		}
-		
-	}
 	
-	public List<ProjectStage> retrieveAll(Paginator paginator) throws POMServicesException {
-		
-		try {
-			return projectStageDAO.retrieveAll(paginator);
-		} catch (POMPersistenceException e) {
-			LOG.error("Could not retrieve all ProjectStages: "+e.getMessage(), e);
-			throw new POMServicesException("Could not retrieve all ProjectStages",e);
-		}
-	}
-
-	public ProjectStage retrieveById(long id) throws POMServicesException {
-
-		try {
-			return projectStageDAO.retrieveById(id);
-		} catch (POMPersistenceException e) {
-			LOG.error("Could not retrieve ProjectStage by ID: "+e.getMessage(), e);
-			throw new POMServicesException("Could not retrieve ProjectStage by ID",e);
-		}
-	}
-
-	public void delete(ProjectStage projectStage) throws POMServicesException {
-
-		try {
-			projectStageDAO.delete(projectStage);
-		} catch (POMPersistenceException e) {
-			LOG.error("Could not delete ProjectStage: "+e.getMessage(), e);
-			throw new POMServicesException("Could not delete ProjectStage",e);
-		}
-	}
-
-	public void create(ProjectStage projectStage) throws POMServicesException {
-
-		try {
-			projectStageDAO.create(projectStage);
-		} catch (POMPersistenceException e) {
-			LOG.error("Could not create ProjectStage: "+e.getMessage(), e);
-			throw new POMServicesException("Could not create ProjectStage",e);
-		}
-	}
-
-	public void update(ProjectStage projectStage) throws POMServicesException {
-
-		try {
-			projectStageDAO.update(projectStage);
-		} catch (POMPersistenceException e) {
-			LOG.error("Could not update ProjectStage: "+e.getMessage(), e);
-			throw new POMServicesException("Could not update ProjectStage",e);
-		}
-	}
-
 }

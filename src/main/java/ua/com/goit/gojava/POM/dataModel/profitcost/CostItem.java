@@ -8,6 +8,8 @@ import ua.com.goit.gojava.POM.dataModel.common.DataObject;
 @Table(name = "cost_items")
 public class CostItem implements DataObject {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id = 0;

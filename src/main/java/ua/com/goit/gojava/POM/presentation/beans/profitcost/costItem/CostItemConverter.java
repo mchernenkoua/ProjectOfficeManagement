@@ -1,4 +1,4 @@
-package ua.com.goit.gojava.POM.presentation.beans.profitcost;
+package ua.com.goit.gojava.POM.presentation.beans.profitcost.costItem;
 
 import javax.faces.convert.FacesConverter;
 

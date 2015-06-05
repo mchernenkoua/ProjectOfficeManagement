@@ -15,6 +15,8 @@ import ua.com.goit.gojava.POM.dataModel.common.DataObject;
 @Table(name = "projects")
 public class Project implements DataObject {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;

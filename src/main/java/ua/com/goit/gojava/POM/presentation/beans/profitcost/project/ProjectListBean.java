@@ -1,4 +1,4 @@
-package ua.com.goit.gojava.POM.presentation.beans.profitcost;
+package ua.com.goit.gojava.POM.presentation.beans.profitcost.project;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;

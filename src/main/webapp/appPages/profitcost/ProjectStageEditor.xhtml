@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewParam name="project" value="#{projectEditorBean.dataObject}" />
+</f:metadata>
+       
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Project Office Management System</title>
+</h:head>
+<h:body>
+	<div class="container">
+	    <ui:include src="/appPages/topMenu.xhtml" />    
+	</div>
+	<h:form>
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" />
+		<p>Этапы проектов</p>
+		<h:inputHidden value="#{projectStageEditorBean.dataObject.id}" />
+		<h:panelGrid columns="2" cellpadding="5">
+	        <p:outputLabel for="id" value="Идентификатор: " />
+	        <p:inputText id="id" value="#{projectStageEditorBean.dataObject.id}" readonly = "true"/>
+	 		
+	        <p:outputLabel for="name" value="Название: " />
+	        <p:inputText id="name" value="#{projectStageEditorBean.dataObject.name}"/>
+	 
+	        <p:outputLabel for="description" value="Описание: " />
+	        <p:inputText id="description" value="#{projectStageEditorBean.dataObject.description}"/>
+	        
+	        <p:outputLabel for="project" value="Проект: " />
+	        <p:autoComplete id="project" value="#{projectStageEditorBean.dataObject.parent}"
+	        		dropdown="true"
+	        		completeMethod="#{projectAutoCompleter.completeText}" 
+		        	var="selectedProject" itemValue="#{selectedProject}" itemLabel="#{selectedProject.name}"  
+		        	forceSelection="true"/>
+	     
+	        <p:commandButton value="Сбросить" type="reset" />
+	        <p:commandButton value="Сохранить" actionListener="#{projectStageEditorBean.save()}" />
+	    </h:panelGrid>
+	</h:form>
+	<div>
+		<h:outputLink value="#{request.contextPath}/appPages/profitcost/ProjectStages.xhtml"> в список этапов </h:outputLink>
+	</div>
+	<div>
+		<h:outputLink value="#{request.contextPath}/appPages/index.xhtml"> вернуться на главное меню </h:outputLink>
+	</div>
+</h:body>
+</html>

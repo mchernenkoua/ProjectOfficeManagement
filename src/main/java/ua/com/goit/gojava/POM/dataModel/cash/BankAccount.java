@@ -1,6 +1,5 @@
 package ua.com.goit.gojava.POM.dataModel.cash;
 
-import java.io.Serializable;
 import java.util.Currency;
 
 import javax.persistence.*;
@@ -9,7 +8,7 @@ import ua.com.goit.gojava.POM.dataModel.common.DataObject;
 
 @Entity
 @Table(name = "bank_account")
-public class BankAccount implements DataObject, Serializable {
+public class BankAccount implements DataObject {
 	
 	private static final long serialVersionUID = 1L;
 

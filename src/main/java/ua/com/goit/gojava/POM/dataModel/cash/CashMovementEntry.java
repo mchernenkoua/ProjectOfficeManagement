@@ -18,6 +18,8 @@ import ua.com.goit.gojava.POM.dataModel.documents.PaymentDocument;
 @Table(name = "cash_movement")
 public class CashMovementEntry implements DataObject {
 
+	private static final long serialVersionUID = 1L;
+
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;

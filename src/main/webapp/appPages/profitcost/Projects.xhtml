@@ -25,6 +25,11 @@
 			<p:menuitem value="Удалить" 
 						action="#{projectListBean.deleteDataObject(projectListBean.selectedDataObject)}" 
 						update=":projectForm"/>
+			
+			<p:menuitem value="Этапы" action="/appPages/profitcost/ProjectStages.xhtml?faces-redirect=true&amp;includeViewParams=true">
+				<f:setPropertyActionListener  target="#{projectStageListBean.projectFilter}" 
+											   value="#{projectListBean.selectedDataObject}" />
+			</p:menuitem>
 		</p:menubar>
 	    
 		<p:dataTable id = "projectDataTable"
@@ -34,7 +39,7 @@
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 			rowsPerPageTemplate="1,2,5,10,15">
 			<f:facet name="header">
-				Статьи затрат
+				Проекты
 			</f:facet>
 			<p:column selectionMode="single" style="width:16px;text-align:center"/>
         	<p:column>
