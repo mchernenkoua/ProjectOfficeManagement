@@ -14,8 +14,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "exchange_rates")
-public class ExchangeRate {
+public class ExchangeRate implements DataObject {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
@@ -69,6 +71,7 @@ public class ExchangeRate {
 	public void setId(long id) {
 		this.id = id;	
 	}
+	@Override
 	public long getId() {
 		return id;
 	}

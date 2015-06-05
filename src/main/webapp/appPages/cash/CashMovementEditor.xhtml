@@ -35,14 +35,14 @@
 		        	var="selectedBankAccount" itemValue="#{selectedBankAccount}" itemLabel="#{selectedBankAccount.name}"  
 		        	forceSelection="true"
 		        >
-		        	<p:ajax event="itemSelect" update="currency" />
+		        	<p:ajax event="itemSelect" update="bankAccount" />
 		    </p:autoComplete>
 	 	
 	        <p:outputLabel for="currency" value="Валюта: " />
 	        <p:inputText id="currency" value="#{cashMovementEditorBean.dataObject.bankAccount.currency}" readonly = "true"/>
 	 		
-	        <p:outputLabel for="bankName" value="Сумма: " />
-	        <p:inputText id="bankName" value="#{cashMovementEditorBean.dataObject.sum.value}"/>
+	        <p:outputLabel for="sum" value="Сумма: " />
+	        <p:inputText id="sum" value="#{cashMovementEditorBean.dataObject.sum.value}"/>
 	 		
 	 		<p:commandButton value="Сбросить" type="reset" />
 	        <p:commandButton value="Сохранить" actionListener="#{cashMovementEditorBean.save()}" />
