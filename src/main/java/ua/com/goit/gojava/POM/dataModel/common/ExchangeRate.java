@@ -11,9 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "exchange_rates")
+@XmlRootElement
 public class ExchangeRate implements DataObject {
 	
 	private static final long serialVersionUID = 1L;

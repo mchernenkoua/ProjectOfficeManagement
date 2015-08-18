@@ -37,11 +37,14 @@ public class ExchangeRateRESTServiceTest {
 				.accept(MediaType.TEXT_XML).get(String.class);
 		String htmlAnswer = target.path("rest").path("ExchangeRate").request()
 				.accept(MediaType.TEXT_HTML).get(String.class);
-
+		String appXmlAnswer = target.path("rest").path("ExchangeRate").request()
+				.accept(MediaType.APPLICATION_XML).get(String.class);
+		
 		System.out.println(response);
 		System.out.println(plainAnswer);
 		System.out.println(xmlAnswer);
 		System.out.println(htmlAnswer);
+		System.out.println(appXmlAnswer);
 		
 	}
 

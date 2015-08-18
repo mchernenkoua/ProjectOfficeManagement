@@ -11,8 +11,8 @@
 				
 	<context:spring-configured/>
     <context:annotation-config/>
-    <!--  
     	<context:load-time-weaver aspectj-weaving="on"/>
+    <!--  
      -->
     <context:component-scan base-package="ua.com.goit.gojava.POM" />
 
