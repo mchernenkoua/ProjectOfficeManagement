@@ -5,22 +5,22 @@ import javax.faces.bean.RequestScoped;
 
 import org.apache.log4j.Logger;
 
-import ua.com.goit.gojava.POM.dataModel.cash.CashMovementEntry;
+import ua.com.goit.gojava.POM.dataModel.documents.PaymentDocument;
 import ua.com.goit.gojava.POM.presentation.beans.common.abstraction.DataObjectEditor;
-import ua.com.goit.gojava.POM.services.CashMovementService;
+import ua.com.goit.gojava.POM.services.PaymentDocumentService;
 import ua.com.goit.gojava.POM.services.common.ApplicationContextProvider;
 import ua.com.goit.gojava.POM.services.common.abstraction.DataObjectService;
 
 
 @RequestScoped
 @ManagedBean
-public class PaymentDocumentEditorBean extends DataObjectEditor<CashMovementEntry> {
+public class PaymentDocumentEditorBean extends DataObjectEditor<PaymentDocument> {
 
 	private static final long serialVersionUID = 1L;
-	private static final String CLASS_NAME = "Cash Movement"; 
+	private static final String CLASS_NAME = "Payment Document"; 
 	private static final Logger LOG = Logger.getLogger(PaymentDocumentEditorBean.class);
-	private CashMovementService cashMovementService = 
-			ApplicationContextProvider.getApplicationContext().getBean(CashMovementService.class);
+	private PaymentDocumentService paymentDocumentService = 
+			ApplicationContextProvider.getApplicationContext().getBean(PaymentDocumentService.class);
 
 	@Override
 	protected String getClassName() {
@@ -33,13 +33,13 @@ public class PaymentDocumentEditorBean extends DataObjectEditor<CashMovementEntr
 	}
 
 	@Override
-	protected DataObjectService<CashMovementEntry> getDataService() {
-		return cashMovementService;
+	protected DataObjectService<PaymentDocument> getDataService() {
+		return paymentDocumentService;
 	}
 
 	@Override
-	protected CashMovementEntry getNewObject() {
-		return new CashMovementEntry();
+	protected PaymentDocument getNewObject() {
+		return new PaymentDocument();
 	}
 	
 }

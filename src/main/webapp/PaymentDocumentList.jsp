@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	import="ua.com.goit.gojava.POM.dataModel.common.*,ua.com.goit.gojava.POM.dataModel.documents.*,
 			ua.com.goit.gojava.POM.services.*,
+			ua.com.goit.gojava.POM.services.common.*,
 			java.text.SimpleDateFormat,
 			java.util.Currency"
 						

@@ -59,7 +59,7 @@ public class PaymentDocumentDetail implements DataObject {
 	@Transient
 	private boolean markedForDelete = false;
 	
-	@Column
+	@Column(name = "row_number")
 	private long rowNumber; 
 	
 	@Override
