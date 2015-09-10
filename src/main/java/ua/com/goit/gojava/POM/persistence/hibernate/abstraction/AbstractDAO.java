@@ -84,8 +84,10 @@ public abstract class AbstractDAO<T> {
 		
 		try {
 			
+			Criteria criteria = session.createCriteria(classT);
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			@SuppressWarnings("unchecked")
-			List<T> resultList = session.createCriteria(classT).list();
+			List<T> resultList = criteria.list();
 			return resultList;	
 			
 		} catch (HibernateException e) {
@@ -103,8 +105,11 @@ public abstract class AbstractDAO<T> {
 		
 		try {
 			
+			Criteria criteria = session.createCriteria(classT);
+			criteria.add(restriction);
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			@SuppressWarnings("unchecked")
-			List<T> resultList = session.createCriteria(classT).add(restriction).list();
+			List<T> resultList = criteria.list();
 			return resultList;	
 			
 		} catch (HibernateException e) {
@@ -129,6 +134,7 @@ public abstract class AbstractDAO<T> {
 			criteria = session.createCriteria(classT);
 			criteria.setFirstResult(paginator.getFirstResult()-1);
 			criteria.setMaxResults(paginator.getMaxResults());
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			@SuppressWarnings("unchecked")
 			List<T> resultList = criteria.list();
 			
@@ -156,6 +162,7 @@ public abstract class AbstractDAO<T> {
 			criteria = session.createCriteria(classT).add(restriction);
 			criteria.setFirstResult(paginator.getFirstResult()-1);
 			criteria.setMaxResults(paginator.getMaxResults());
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			@SuppressWarnings("unchecked")
 			List<T> resultList = criteria.list();
 			

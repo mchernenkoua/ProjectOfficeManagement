@@ -20,7 +20,7 @@
 	   		<p:menuitem value="Добавить" url="/appPages/documents/PaymentDocumentEditor.xhtml" />
 			<p:menuitem value="Редактировать" action="/appPages/documents/PaymentDocumentEditor.xhtml?faces-redirect=true&amp;includeViewParams=true">
 				<f:setPropertyActionListener  target="#{paymentDocumentEditorBean.dataObject}" 
-											   value="#{paymentDocumentListBean.selectedDataObject}" />
+											  value="#{paymentDocumentListBean.selectedDataObject}" />
 			</p:menuitem>
 			<p:menuitem value="Удалить" 
 						action="#{paymentDocumentListBean.deleteDataObject(paymentDocumentListBean.selectedDataObject)}" 

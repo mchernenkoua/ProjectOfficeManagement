@@ -30,15 +30,14 @@ public abstract class DataObjectListViewer<T extends DataObject> implements Seri
 	protected abstract Logger getLogger();
 	protected abstract DataObjectService<T> getDataService();
 	
+	protected List<T> getDataList(DataObjectService<T> dataObjectService, Paginator paginator) throws POMServicesException {
+		return dataObjectService.retrieveAll(paginator);
+	}
+	
 	protected class DataObjectModel extends LazyDataModel<T> {
 		
 		private static final long serialVersionUID = 1L;
 		private List<T> dataObjectList;
-		
-		public List<T> getDataList(DataObjectService<T> dataObjectService, 
-												Paginator paginator) throws POMServicesException {
-			return dataObjectService.retrieveAll(paginator);
-		}
 		
 		@Override
 		public List<T> load(int first, int pageSize, 
@@ -81,7 +80,6 @@ public abstract class DataObjectListViewer<T extends DataObject> implements Seri
 	} 
 	
 	protected LazyDataModel<T> initDataObjects() {
-		
 		return new DataObjectModel();
 	}
 
@@ -105,6 +103,10 @@ public abstract class DataObjectListViewer<T extends DataObject> implements Seri
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Can not delete "+getClassName()+"!"));
 		}
+	}
+	
+	protected void resetObjects() {
+		dataObjects = null;
 	}
 	
 	public LazyDataModel<T> getDataObjects() {

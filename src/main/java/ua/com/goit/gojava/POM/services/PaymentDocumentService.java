@@ -12,6 +12,7 @@ import ua.com.goit.gojava.POM.dataModel.documents.PaymentDocumentDetail;
 import ua.com.goit.gojava.POM.dataModel.profitcost.ProjectFinResultEntry;
 import ua.com.goit.gojava.POM.persistence.hibernate.PaymentDocumentDAO;
 import ua.com.goit.gojava.POM.persistence.hibernate.abstraction.AbstractDAO;
+import ua.com.goit.gojava.POM.services.common.Paginator;
 import ua.com.goit.gojava.POM.services.common.abstraction.DataObjectService;
 
 public class PaymentDocumentService extends DataObjectService<PaymentDocument> {
@@ -86,6 +87,12 @@ public class PaymentDocumentService extends DataObjectService<PaymentDocument> {
 		Criterion restriction = Restrictions.eq("doc", doc);
 		return paymentDocumentDetailService.retrieve(restriction);
 	}
+	
+	public List<PaymentDocumentDetail> retrieveAllDetails(PaymentDocument doc, Paginator paginator) throws POMServicesException {
+		Criterion restriction = Restrictions.eq("doc", doc);
+		return paymentDocumentDetailService.retrieve(restriction, paginator);
+	}
+	
 	public PaymentDocumentDetail retrieveDocDetailById(long id) throws POMServicesException {	
 		return paymentDocumentDetailService.retrieveById(id);
 	}

@@ -50,7 +50,7 @@ public class PaymentDocumentDetail implements DataObject {
 	        @AttributeOverride(name="value", column = @Column(name="sum") ),
 	        @AttributeOverride(name="currency", column = @Column(name="currency") )
 	    })
-    private Money sum;
+    private Money sum = new Money();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "doc_id")

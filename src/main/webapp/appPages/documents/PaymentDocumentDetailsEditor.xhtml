@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewParam name="paymentDocument" value="#{paymentDocumentDetailsEditorBean.paymentDocument}" />
+    <f:viewParam name="dataObject" value="#{paymentDocumentDetailsEditorBean.dataObject}" />
+</f:metadata>
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Project Office Management System</title>
+</h:head>
+<h:body>
+	<div class="container">
+	    <ui:include src="/appPages/topMenu.xhtml" />    
+	</div>
+	<h:form id = "paymentDocumentDetailsForm">
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" />
+		<p>Детальная запись платежного документа</p>
+		<h:inputHidden value="#{paymentDocumentDetailsEditorBean.paymentDocument}" id="paymentDocument"/>
+		
+		<h:panelGrid columns="2" cellpadding="5">
+	        <p:outputLabel for="id" value="Идентификатор: " />
+	        <p:inputText id="id" value="#{paymentDocumentDetailsEditorBean.dataObject.id}" readonly = "true"/>
+	 
+	        <p:outputLabel for="project" value="Проект: " />
+	        <p:autoComplete id="project" value="#{paymentDocumentDetailsEditorBean.dataObject.project}"
+	        		dropdown="true"
+	        		completeMethod="#{projectAutoCompleter.completeText}" 
+		        	var="selectedProject" itemValue="#{selectedProject}" itemLabel="#{selectedProject.name}"  
+		        	forceSelection="true"
+		        >
+		        	<p:ajax event="itemSelect" update="project" />
+		    </p:autoComplete>
+	 	
+	        <p:outputLabel for="projectStage" value="Этап: " />
+	        <p:autoComplete id="projectStage" value="#{paymentDocumentDetailsEditorBean.dataObject.projectStage}"
+	        		dropdown="true"
+	        		completeMethod="#{projectStageAutoCompleter.completeText}" 
+		        	var="selectedProjectStage" itemValue="#{selectedProjectStage}" itemLabel="#{selectedProjectStage.name}"  
+		        	forceSelection="true"
+		        >
+		        	<p:ajax event="itemSelect" update="projectStage" />
+		    </p:autoComplete>
+	 	
+	 		<p:outputLabel for="costItem" value="Статья затрат: " />
+	        <p:autoComplete id="costItem" value="#{paymentDocumentDetailsEditorBean.dataObject.costItem}"
+	        		dropdown="true"
+	        		completeMethod="#{costItemAutoCompleter.completeText}" 
+		        	var="selectedCostItem" itemValue="#{selectedCostItem}" itemLabel="#{selectedCostItem.name}"  
+		        	forceSelection="true"
+		        >
+		        	<p:ajax event="itemSelect" update="costItem" />
+		    </p:autoComplete>
+	 	
+	 		<p:outputLabel for="currency" value="Валюта: " />
+	        <p:autoComplete id="currency" value="#{paymentDocumentDetailsEditorBean.dataObject.sum.currency}"
+	        		dropdown="true"
+	        		completeMethod="#{currencyAutoCompleter.completeText}" 
+		        	var="selectedCurrency" itemValue="#{selectedCurrency}" itemLabel="#{selectedCurrency.currencyCode}"  
+		        	forceSelection="true"
+		        >
+		        	<p:ajax event="itemSelect" update="currency" />
+		    </p:autoComplete>
+		    	        
+	        <p:outputLabel for="sum" value="Сумма: " />
+	        <p:inputText id="sum" value="#{paymentDocumentDetailsEditorBean.dataObject.sum.value}"/>
+	 		
+	 		<p:commandButton value="Сбросить" type="reset" />
+	 		<p:commandButton value="Сохранить" actionListener="#{paymentDocumentDetailsEditorBean.save()}" />
+	 	</h:panelGrid>
+	 	<div>
+			<h:outputLink value="#{request.contextPath}/appPages/documents/PaymentDocuments.xhtml"> в список </h:outputLink>
+		</div>
+		<div>
+			<h:outputLink value="#{request.contextPath}/appPages/index.xhtml"> вернуться на главное меню </h:outputLink>
+		</div>
+	</h:form>
+</h:body>
+</html>

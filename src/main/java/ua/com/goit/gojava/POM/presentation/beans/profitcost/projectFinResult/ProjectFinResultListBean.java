@@ -6,7 +6,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
-import org.primefaces.model.LazyDataModel;
 
 import ua.com.goit.gojava.POM.dataModel.profitcost.Project;
 import ua.com.goit.gojava.POM.dataModel.profitcost.ProjectFinResultEntry;
@@ -31,24 +30,14 @@ public class ProjectFinResultListBean extends DataObjectListViewer<ProjectFinRes
 	private Project projectFilter;
 	
 	@Override
-	protected LazyDataModel<ProjectFinResultEntry> initDataObjects() {
-		
-		return new DataObjectModel() {
-
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public List<ProjectFinResultEntry> getDataList(
-					DataObjectService<ProjectFinResultEntry> dataObjectService, Paginator paginator) throws POMServicesException {
-			
-				if (projectFilter == null) {
-					return projectFinResultEntryService.retrieveAll(paginator);
-				} else {
-					return projectFinResultEntryService.retrieveAll(projectFilter, paginator);
-				}
-			}
-
-		};
+	protected List<ProjectFinResultEntry> getDataList(
+			DataObjectService<ProjectFinResultEntry> dataObjectService, Paginator paginator) throws POMServicesException {
+	
+		if (projectFilter == null) {
+			return projectFinResultEntryService.retrieveAll(paginator);
+		} else {
+			return projectFinResultEntryService.retrieveAll(projectFilter, paginator);
+		}
 	}
 
 	@Override

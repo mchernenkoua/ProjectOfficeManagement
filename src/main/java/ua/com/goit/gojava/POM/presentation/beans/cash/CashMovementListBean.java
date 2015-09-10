@@ -6,7 +6,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
-import org.primefaces.model.LazyDataModel;
 
 import ua.com.goit.gojava.POM.dataModel.cash.BankAccount;
 import ua.com.goit.gojava.POM.dataModel.cash.CashMovementEntry;
@@ -31,24 +30,14 @@ public class CashMovementListBean extends DataObjectListViewer<CashMovementEntry
 	private BankAccount bankAccountFilter;
 	
 	@Override
-	protected LazyDataModel<CashMovementEntry> initDataObjects() {
-		
-		return new DataObjectModel() {
-
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public List<CashMovementEntry> getDataList(
-					DataObjectService<CashMovementEntry> dataObjectService, Paginator paginator) throws POMServicesException {
-			
-				if (bankAccountFilter == null) {
-					return cashMovementService.retrieveAll(paginator);
-				} else {
-					return cashMovementService.retrieveAll(bankAccountFilter, paginator);
-				}
-			}
-
-		};
+	protected List<CashMovementEntry> getDataList(
+			DataObjectService<CashMovementEntry> dataObjectService, Paginator paginator) throws POMServicesException {
+	
+		if (bankAccountFilter == null) {
+			return cashMovementService.retrieveAll(paginator);
+		} else {
+			return cashMovementService.retrieveAll(bankAccountFilter, paginator);
+		}
 	}
 
 	@Override

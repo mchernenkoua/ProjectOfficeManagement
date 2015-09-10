@@ -6,7 +6,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
-import org.primefaces.model.LazyDataModel;
 
 import ua.com.goit.gojava.POM.dataModel.profitcost.Project;
 import ua.com.goit.gojava.POM.dataModel.profitcost.ProjectStage;
@@ -31,24 +30,14 @@ public class ProjectStageListBean extends DataObjectListViewer<ProjectStage> {
 	private Project projectFilter;
 	
 	@Override
-	protected LazyDataModel<ProjectStage> initDataObjects() {
-		
-		return new DataObjectModel() {
-
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public List<ProjectStage> getDataList(
-					DataObjectService<ProjectStage> dataObjectService, Paginator paginator) throws POMServicesException {
-			
-				if (projectFilter == null) {
-					return projectStageService.retrieveAll(paginator);
-				} else {
-					return projectStageService.retrieveAll(projectFilter, paginator);
-				}
-			}
-
-		};
+	protected List<ProjectStage> getDataList(
+			DataObjectService<ProjectStage> dataObjectService, Paginator paginator) throws POMServicesException {
+	
+		if (projectFilter == null) {
+			return projectStageService.retrieveAll(paginator);
+		} else {
+			return projectStageService.retrieveAll(projectFilter, paginator);
+		}
 	}
 
 	@Override
